@@ -15,8 +15,10 @@ import java.util.Vector;
  */
 public class SOMTrainer implements Runnable {
 	// These constants can be changed to play with the learning algorithm
+	//private static final double START_LEARNING_RATE = 0.07;
 	private static final double START_LEARNING_RATE = 0.07;
 	private static final int	NUM_ITERATIONS = 500;
+	private static final int  SLEEP_INTERVAL = 100; //ms
 	
 	// These two depend on the size of the lattice, so are set later
 	private double LATTICE_RADIUS;
@@ -112,6 +114,13 @@ public class SOMTrainer implements Runnable {
 			learningRate = START_LEARNING_RATE *
 							Math.exp(-(double)iteration/NUM_ITERATIONS);
 			renderer.render(lattice, iteration);
+
+			//Sleep for a bit
+			try {
+				Thread.sleep(SLEEP_INTERVAL);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
 		}
 		running = false;
 	}

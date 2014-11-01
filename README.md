@@ -2,7 +2,7 @@
 A simple Java implementation.
 
 This code was originally retrieved from <http://www.ai-junkie.com/files/SOMDemo_java.zip>
-As part of this tutorial: <http://www.ai-junkie.com/ann/som/som1.html>
+as part of this tutorial: <http://www.ai-junkie.com/ann/som/som1.html>.
 
 I.e. it is not originally my work.
 

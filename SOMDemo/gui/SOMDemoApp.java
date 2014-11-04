@@ -18,12 +18,15 @@ import java.util.Vector;
  */
 public class SOMDemoApp extends javax.swing.JFrame {
 
-	private int latticeWidth = 40;
+	private int latticeWidth = 50;
 	private int latticeHeight = 40;
 	
 	private SOMTrainer trainer;
 	private SOMLattice lattice;
 	private Vector inputVectors;
+
+  private static final int WINDOW_WIDTH  = 1100;
+  private static final int WINDOW_HEIGHT = 800;
 	
 	/** Creates new form SOMDemo */
 	public SOMDemoApp() {
@@ -132,7 +135,7 @@ public class SOMDemoApp extends javax.swing.JFrame {
             }
         });
 
-        jSplitPane1.setDividerLocation(400);
+        jSplitPane1.setDividerLocation(WINDOW_WIDTH-150);
         jSplitPane1.setDividerSize(5);
         jSplitPane1.setEnabled(false);
         jPanel1.setLayout(new java.awt.CardLayout());
@@ -168,8 +171,8 @@ public class SOMDemoApp extends javax.swing.JFrame {
 
         pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(new java.awt.Dimension(550, 400));
-        setLocation((screenSize.width-550)/2,(screenSize.height-400)/2);
+        setSize(new java.awt.Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        setLocation((screenSize.width-WINDOW_WIDTH)/2,(screenSize.height-WINDOW_HEIGHT)/2);
     }//GEN-END:initComponents
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -22,7 +22,8 @@ import java.awt.FontMetrics;
  */
 public class LatticeRenderer extends JPanel {
 	private BufferedImage img = null;
-	Font arialFont = new Font("Arial", Font.BOLD, 12);
+	Font arialFont = new Font("Arial", Font.BOLD, 36);
+	Font arialFontSmall = new Font("Arial", Font.BOLD, 12);
 	SOMLattice lattice;
 	boolean ready = false;
 	
@@ -52,8 +53,8 @@ public class LatticeRenderer extends JPanel {
 	// All it does it slaps the given lattice's weight values up in a 2x2
 	// grid as an image
 	public void render(SOMLattice lattice, int iteration) {
-		float cellWidth = (float)getWidth() / (float)lattice.getWidth();
-		float cellHeight = (float)getHeight() / (float)lattice.getHeight();
+		int cellWidth = getWidth() / lattice.getWidth();
+		int cellHeight = getHeight() / lattice.getHeight();
 //		float cellWidth = 2;
 //		float cellHeight = 2;
 		
@@ -61,21 +62,25 @@ public class LatticeRenderer extends JPanel {
 		int imgH = img.getHeight();
 		float r, g, b;
 		Graphics2D g2 = img.createGraphics();
-		g2.setBackground(Color.black);
+		//g2.setBackground(Color.black);
 		g2.clearRect(0,0,imgW,imgH);
 		for (int x=0; x<lattice.getWidth(); x++) {
 			for (int y=0; y<lattice.getHeight(); y++) {
 				r = (float)((Double)lattice.getNode(x,y).getVector().elementAt(0)).doubleValue();
 				g = (float)((Double)lattice.getNode(x,y).getVector().elementAt(1)).doubleValue();
 				b = (float)((Double)lattice.getNode(x,y).getVector().elementAt(2)).doubleValue();
-				g2.setColor(new Color(r,g,b));
+				g2.setColor(Color.black);
 				g2.fillRect((int)(x*cellWidth), (int)(y*cellHeight),
 							(int)cellWidth, (int)cellHeight);
+
+				g2.setColor(new Color(r,g,b));
+				g2.fillRect((int)(x*cellWidth), (int)(y*cellHeight),
+							(int)cellWidth - 1, (int)cellHeight - 1);
 			}
 		}
 		g2.setColor(Color.black);
 		g2.setFont(arialFont);
-		g2.drawString("Iteration: " + String.valueOf(iteration), 5, 15);
+		g2.drawString(String.valueOf(iteration), 5, 45);
 		g2.dispose();
 		repaint();
 	}
@@ -100,7 +105,7 @@ public class LatticeRenderer extends JPanel {
 		int cellX = (int)((float)x / cellWidth);
 		int cellY = (int)((float)y / cellHeight);
 		Graphics2D g2 = (Graphics2D)img.getGraphics();
-		g2.setFont(arialFont);
+		g2.setFont(arialFontSmall);
 		float r = (float)((Double)lattice.getNode(cellX,cellY).getVector().elementAt(0)).doubleValue();
 		float g = (float)((Double)lattice.getNode(cellX,cellY).getVector().elementAt(1)).doubleValue();
 		float b = (float)((Double)lattice.getNode(cellX,cellY).getVector().elementAt(2)).doubleValue();
